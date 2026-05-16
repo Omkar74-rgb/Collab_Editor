@@ -8,15 +8,31 @@ import authRoutes from './routes/auth';
 import documentRoutes from './routes/documents';
 import { registerSocketHandlers } from './socket/collabHandler';
 import executeRoutes from './routes/execute';
+
 dotenv.config();
 
 const app = express();
 const httpServer = http.createServer(app);
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://collab-editor-inky.vercel.app',
+  process.env.CLIENT_URL || '',
+].filter(Boolean);
+
 const io = new Server(httpServer, {
-  cors: { origin: process.env.CLIENT_URL, methods: ['GET', 'POST'] }
+  cors: {
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
 });
 
-app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
+
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
