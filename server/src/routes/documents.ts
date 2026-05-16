@@ -1,6 +1,6 @@
 import { Router, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import DocumentModel from '../models/document';
+import DocumentModel from '../models/Document';
 import UserModel from '../models/user';
 import { protect, AuthRequest } from '../middleware/auth';
 
