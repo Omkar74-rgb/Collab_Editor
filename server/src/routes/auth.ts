@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import router from './documents';
 
 export interface AuthRequest extends Request {
   userId?: string;
@@ -19,3 +20,4 @@ export const protect = (req: AuthRequest, res: Response, next: NextFunction): vo
     res.status(401).json({ error: 'Invalid token' });
   }
 };
+export default router;
