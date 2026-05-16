@@ -1,5 +1,5 @@
 import { Server, Socket } from 'socket.io';
-import DocumentModel from '../models/document';
+import DocumentModel from '../models/Document';
 
 const activeRooms = new Map<string, string>();
 const roomUsers = new Map<string, Map<string, { username: string; color: string }>>();
