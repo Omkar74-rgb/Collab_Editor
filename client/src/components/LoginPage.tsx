@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 interface Props { onLogin: (token: string, username: string) => void; }
 
@@ -10,7 +11,7 @@ export const LoginPage: React.FC<Props> = ({ onLogin }) => {
 
   const handleSubmit = async () => {
     try {
-      const url = `http://localhost:5000/api/auth/${isRegister ? 'register' : 'login'}`;
+      const url = `${API_URL}/api/auth/${isRegister ? 'register' : 'login'}`;
       const { data } = await axios.post(url, form);
       onLogin(data.token, data.user.username);
     } catch (e: any) {

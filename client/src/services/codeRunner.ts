@@ -1,3 +1,5 @@
+import { API_URL } from '../config';
+
 interface ExecutionResult {
   stdout: string;
   stderr: string;
@@ -10,7 +12,7 @@ interface ExecutionResult {
 export async function runCode(code: string, language: string): Promise<ExecutionResult> {
   const token = localStorage.getItem('token');
 
-  const response = await fetch('http://localhost:5000/api/execute', {
+  const response = await fetch(`${API_URL}/api/execute`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

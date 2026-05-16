@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 interface Room { roomId: string; title: string; language: string; updatedAt: string; }
 interface Props { token: string; }
@@ -15,7 +16,7 @@ export const Dashboard: React.FC<Props> = ({ token }) => {
   const navigate = useNavigate();
 
   const headers = { Authorization: `Bearer ${token}` };
-  const API = 'http://localhost:5000/api/documents';
+  const API = `${API_URL}/api/documents`;
 
   const fetchRooms = async () => {
     try {
